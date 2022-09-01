@@ -42,8 +42,8 @@ public class ModuleScreen extends Screen {
         }));
 
         this.addDrawableChild(new ButtonWidget(10,80,80,20, Modules.flightEnabled ? Text.literal("Flight: On") : Text.literal("Flight: Off"),button -> {
-            button.setMessage(Modules.flightEnabled ? Text.literal("Flight: On") : Text.literal("Flight: Off"));
             Modules.flightEnabled = !Modules.flightEnabled;
+            button.setMessage(Modules.flightEnabled ? Text.literal("Flight: On") : Text.literal("Flight: Off"));
         }));
     }
 }
