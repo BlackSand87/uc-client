@@ -5,6 +5,9 @@ import com.blacksand.uc.client.modules.Modules;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.text.Text;
 
 public class ModuleScreen extends Screen {
@@ -20,12 +23,22 @@ public class ModuleScreen extends Screen {
     }
 
     public void init() {
-        this.addDrawableChild(new ButtonWidget(10,20,80,20, Text.literal("X-Ray: Off"), button -> {
+        this.addDrawableChild(new ButtonWidget(10, 20, 80, 20, Modules.xrayEnabled ? Text.literal("X-Ray: On") : Text.literal("X-Ray: Off"), button -> {
             Modules.xrayEnabled = !Modules.xrayEnabled;
             button.setMessage(Modules.xrayEnabled ? Text.literal("X-Ray: On") : Text.literal("X-Ray: Off"));
             UCClient.defaultGamma = options.getGamma().getValue().equals(1000.0) ? UCClient.defaultGamma : options.getGamma().getValue();
             options.getGamma().setValue(Modules.xrayEnabled ? 1000.0 : UCClient.defaultGamma);
             client.worldRenderer.reload();
+        }));
+
+        this.addDrawableChild(new ButtonWidget(10, 50, 80, 20, Modules.fullbrightEnabled ? Text.literal("Fullbright: On") : Text.literal("Fullbright: Off"), button -> {
+            Modules.fullbrightEnabled = !Modules.fullbrightEnabled;
+            button.setMessage(Modules.fullbrightEnabled ? Text.literal("Fullbright: On") : Text.literal("Fullbright: Off"));
+            if(Modules.fullbrightEnabled) {
+                client.player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, Integer.MAX_VALUE));
+            } else {
+                client.player.removeStatusEffect(StatusEffects.NIGHT_VISION);
+            }
         }));
     }
 }
