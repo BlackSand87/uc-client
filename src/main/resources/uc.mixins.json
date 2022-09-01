@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.blacksand.uc.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "client.BlockMixin"
+  ],
+  "client": [
+    "client.GameMenuScreenMixin",
+    "client.LivingEntityMixin",
+    "client.SimpleOptionMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
