@@ -9,6 +9,7 @@ import java.util.List;
 public class Modules {
     public static boolean xrayEnabled = false;
     public static boolean fullbrightEnabled = false;
+    public static boolean flightEnabled = false;
     public static List<Block> xrayAllowedBlocks = new ArrayList<>();
 
     static {
