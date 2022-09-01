@@ -46,4 +46,8 @@ public class ModuleScreen extends Screen {
             button.setMessage(Modules.flightEnabled ? Text.literal("Flight: On") : Text.literal("Flight: Off"));
         }));
     }
+
+    public void close() {
+        client.setScreen(parent);
+    }
 }
